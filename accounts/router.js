@@ -5,7 +5,7 @@ const router = express.Router();
 
 // /api/accounts
 router.get("/", (req, res) => {
-	getAll()
+	getAll(req.query)
 		.then(result => {
 			res.status(200).json(result);
 		})

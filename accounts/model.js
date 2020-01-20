@@ -1,8 +1,16 @@
 const DB = require("../data/dbConfig");
 
-const getAll = () => {
+const getAll = (query = {}) => {
+	const { page = 1, limit = 10, sortBy = "id", sortDir = "asc" } = query;
+	const offset = limit * (page - 1);
+
+	return DB("accounts")
+		.orderBy(sortBy, sortDir)
+		.limit(limit)
+		.offset(offset);
+
 	// SELECT * FROM accounts
-	return DB("accounts");
+	// return DB("accounts");
 };
 
 const insert = ({ name, budget }) => {
